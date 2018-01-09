@@ -14,6 +14,11 @@ public class User{
 		this.password = password;
 	}
 
+	public User(String account,String password){
+		this.account = account;
+		this.password = password;
+	}
+
 	public String  getAccount() {
 
 		return account;
@@ -25,9 +30,11 @@ public class User{
 
 		return balance;
 	}
-2
 	public String getName() {
 		return name;
+	}
+	public void setPassword(String password){
+		this.password = password;
 	}
 
 	public String getPassword() {

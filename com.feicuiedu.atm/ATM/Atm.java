@@ -2,14 +2,15 @@ package ATM;
 
 public class Atm{
 	private User[] users = new User[]{
-		new User("370120180104","ç¿¡ç¿ ä¾ ","1000","123456"),
-		new User("370120180108","é’¢é“ä¾ ","1000","654321")
-	}
+		new User("370120180104","ôä´äÏÀ",1000,"123456"),
+		new User("370120180108","¸ÖÌúÏÀ",1000,"654321")
+	};
 	private User user;
 	public User getUser(){
 		return user;
 	}
 	public void DrawBusiness(double draw){
+
 		user.setBalance(user.getBalance()-draw);
 	}
 	public void OperaBusiness(double opera){
@@ -19,22 +20,23 @@ public class Atm{
 		user.setBalance(user.getBalance()-othermoney);
 		otheruser.setBalance(otheruser.getBalance()+othermoney);
 	}
-	public int Finduser(User user){
+	public User Finduser(User user){
 		for(int i = 0;i<users.length;i++){
-			if(user.getAccount().equals(User[i].getAccount()))
-				return i;
+			if(user.getAccount().equals(users[i].getAccount()))
+				return users[i];
 		}
-		return -1;
+		return null;
 	}
 	public boolean Login(User user){
-		int result = Finduser(user);
-		if(result==-1){
+		User result = Finduser(user);
+		if(result==null){
 			return false;
 		}else{
-			if(users[result].getPassword().equals(user.getPassword()){
-				this.user = users[result];
+			if(result.getPassword().equals(user.getPassword())){
+				this.user = result;
 				return true;
 			}
 		}
+		return false;
 	}
 }

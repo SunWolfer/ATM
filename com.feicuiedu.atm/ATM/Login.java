@@ -1,29 +1,31 @@
 package ATM;
 import java.util.Scanner;
 
-public class Login{
-	private User user;
-	public Login(User user){
-		this.user = user;
-	}
-	public void login(){
+public class Login extends Virtual{
+
+
+	public Virtual show(){
 		Scanner sc = new Scanner(System.in);
-		while(true){
-				System.out.println("ÇëÊäÈëÕËºÅ:");
-				String Account = sc.nextLine();
-				/*if(user.VerifyAccount(Account)){
-					break;
-				}*/
+			System.out.println("ÇëÊäÈëÕËºÅ:");
+			String Account = sc.nextLine();
+			User user = new User(Account,null);
+			if(Account.length()!=12){
+				System.out.println("ÕËºÅ±ØĞëÎª12Î»");
+				return new Login();
+			}
+			if(atm.Finduser(user)==null){
+				System.out.println("ÓÃ»§²»´æÔÚ");
+				return new Login();
 			}
 
-		while(true){
 			System.out.println("ÇëÊäÈëÃÜÂë");
 			String Password = sc.nextLine();
-			/*if(user.VerifyPassword(Password)){
-				break;
-			}*/
-		}
-		MainMenu mainmenu = new MainMenu(user);
-		mainmenu.showMainMenu();
+			user.setPassword(Password);
+			if(!atm.Login(user)){
+				System.out.println("ÃÜÂë´íÎó");
+				return new Login();
+			}
+
+			return new MainMenu();
 	}
 }
