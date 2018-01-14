@@ -10,7 +10,8 @@ public class MainMenu extends Virtual{
 		System.out.println("2:转账");
 		System.out.println("3:取款");
 		System.out.println("4:存款");
-		System.out.println("5:退卡");
+		System.out.println("5:转账记录");
+		System.out.println("6:退卡");
 
 		int num = new Scanner(System.in).nextInt();
 		if(num==1){
@@ -26,6 +27,9 @@ public class MainMenu extends Virtual{
 			return new Operation();
 		}
 		if(num==5){
+			return new Record();
+		}
+		if(num==6){
 			return new Login();
 		}
 		return this;

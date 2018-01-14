@@ -9,8 +9,8 @@ public class Login extends Virtual{
 			System.out.println("请输入账号:");
 			String Account = sc.nextLine();
 			User user = new User(Account,null);
-			if(Account.length()!=12){
-				System.out.println("账号必须为12位");
+			if(!atm.checkAccount(Account)){
+				System.out.println("账号必须为12位数字");
 				return new Login();
 			}
 			if(atm.Finduser(user)==null){

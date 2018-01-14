@@ -9,24 +9,28 @@ public class Atm{
 	public User getUser(){
 		return user;
 	}
-	public void DrawBusiness(double draw){
+	public void DrawBusiness(){
 
-		user.setBalance(user.getBalance()-draw);
+		user.setBalance(user.getBalance()-user.getDraw());
 	}
-	public void OperaBusiness(double opera){
-		user.setBalance(user.getBalance()+opera);
+	public void OperaBusiness(){
+		user.setBalance(user.getBalance()+user.getOpera());
 	}
-	public void OtherBusiness(double othermoney,User otheruser){
-		user.setBalance(user.getBalance()-othermoney);
-		otheruser.setBalance(otheruser.getBalance()+othermoney);
+	public void OtherBusiness(User otheruser){
+		user.setBalance(user.getBalance()-user.getOthermoney());
+		otheruser.setBalance(otheruser.getBalance()+user.getOthermoney());
 	}
-	public User Finduser(User user){
+	public User Finduser(User user){//验证账户
 		for(int i = 0;i<users.length;i++){
 			if(user.getAccount().equals(users[i].getAccount()))
 				return users[i];
 		}
 		return null;
 	}
+	public static boolean checkAccount(String Account){
+		return Account.matches("[0-9]{12}"); //验证账户长度并只包含数字	
+	}
+	
 	public boolean Login(User user){
 		User result = Finduser(user);
 		if(result==null){
